@@ -45,10 +45,55 @@ const pizzaData = [
 
 function App() {
 	return (
-		<div>
-			<h1> {pizzaData[0].name}</h1>
+		<div className="container">
+			<Header />
+			<Menu />
+			<Footer />
 		</div>
 	);
 }
 
+function Header() {
+	return (
+		<header className="header">
+			<h1>Tasty React Pizza Co.</h1>
+		</header>
+	);
+}
+
+function Menu() {
+	return (
+		<main className="Our menu">
+			<h2>Menu</h2>
+			<Pizza />
+		</main>
+	);
+}
+
+function Pizza() {
+	return (
+		<div>
+			<img src={pizzaData[0].photoName} alt={pizzaData[0].name} />
+			<h3>{pizzaData[0].name}</h3>
+			<p>{pizzaData[0].ingredients}</p>
+		</div>
+	);
+}
+
+function Footer() {
+	const time = new Date().getHours();
+	if (time >= 10 && time <= 21) {
+		return (
+			<footer className="footer">
+				{new Date().toLocaleTimeString()}. We are currently open!
+			</footer>
+		);
+	} else {
+		return (
+			<footer className="footer">
+				{new Date().toLocaleTimeString()}. Sorry! We're closed.
+			</footer>
+		);
+	}
+}
 export default App;
