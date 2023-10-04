@@ -63,19 +63,37 @@ function Header() {
 
 function Menu() {
 	return (
-		<main className="Our menu">
-			<h2>Menu</h2>
-			<Pizza />
+		<main className="menu ">
+			<h2>Our Menu</h2>
+			<div className="pizzas">
+				<Pizza
+					name="Focaccia"
+					ingredients="Bread with italian olive oil and rosemary"
+					price={18}
+					photoName="pizzas/prosciutto.jpg"
+					soldOut={false}
+				/>
+				<Pizza
+					name="Pizza Margherita"
+					ingredients="Tomato and mozarella"
+					price={10}
+					photoName="pizzas/margherita.jpg"
+					soldOut={false}
+				/>
+			</div>
 		</main>
 	);
 }
 
-function Pizza() {
+function Pizza(props) {
 	return (
-		<div>
-			<img src={pizzaData[0].photoName} alt={pizzaData[0].name} />
-			<h3>{pizzaData[0].name}</h3>
-			<p>{pizzaData[0].ingredients}</p>
+		<div className="pizza">
+			<img src={props.photoName} alt={props.name} />
+			<div>
+				<h3>{props.name}</h3>
+				<p>{props.ingredients}</p>
+				<span>{props.price}</span>
+			</div>
 		</div>
 	);
 }
