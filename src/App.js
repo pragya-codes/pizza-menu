@@ -65,8 +65,8 @@ function Menu() {
 	return (
 		<main className="menu ">
 			<h2>Our Menu</h2>
-			<div className="pizzas">
-				<Pizza
+			<ul className="pizzas">
+				{/* <Pizza
 					name="Focaccia"
 					ingredients="Bread with italian olive oil and rosemary"
 					price={18}
@@ -79,22 +79,25 @@ function Menu() {
 					price={10}
 					photoName="pizzas/margherita.jpg"
 					soldOut={false}
-				/>
-			</div>
+				/> */}
+				{pizzaData.map((pizza) => {
+					return <Pizza pizzaObj={pizza} key={pizza.name} />;
+				})}
+			</ul>
 		</main>
 	);
 }
 
 function Pizza(props) {
 	return (
-		<div className="pizza">
-			<img src={props.photoName} alt={props.name} />
+		<li className="pizza">
+			<img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
 			<div>
-				<h3>{props.name}</h3>
-				<p>{props.ingredients}</p>
-				<span>{props.price}</span>
+				<h3>{props.pizzaObj.name}</h3>
+				<p>{props.pizzaObj.ingredients}</p>
+				<span>{props.pizzaObj.price}</span>
 			</div>
-		</div>
+		</li>
 	);
 }
 
@@ -102,14 +105,16 @@ function Footer() {
 	const time = new Date().getHours();
 	if (time >= 10 && time <= 21) {
 		return (
-			<footer className="footer">
+			<footer className="footer order">
 				{new Date().toLocaleTimeString()}. We are currently open!
+				<div className="btn">Order Now!</div>
 			</footer>
 		);
 	} else {
 		return (
-			<footer className="footer">
+			<footer className="footer order">
 				{new Date().toLocaleTimeString()}. Sorry! We're closed.
+				<div className="btn">Order Now!</div>
 			</footer>
 		);
 	}
