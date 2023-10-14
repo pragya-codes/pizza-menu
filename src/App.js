@@ -65,6 +65,10 @@ function Menu() {
 	return (
 		<main className="menu ">
 			<h2>Our Menu</h2>
+			<p>
+				Authentic Italian pizza! All pizzas are homecooked in our stone
+				oven with lots of love &hearts;
+			</p>
 			<ul className="pizzas">
 				{/* <Pizza
 					name="Focaccia"
@@ -88,14 +92,14 @@ function Menu() {
 	);
 }
 
-function Pizza(props) {
+function Pizza({ pizzaObj }) {
 	return (
-		<li className="pizza">
-			<img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+		<li className={pizzaObj.soldOut ? 'pizza sold-out' : 'pizza'}>
+			<img src={pizzaObj.photoName} alt={pizzaObj.name} />
 			<div>
-				<h3>{props.pizzaObj.name}</h3>
-				<p>{props.pizzaObj.ingredients}</p>
-				<span>{props.pizzaObj.price}</span>
+				<h3>{pizzaObj.name}</h3>
+				<p>{pizzaObj.ingredients}</p>
+				<span>{pizzaObj.soldOut ? 'SOLD OUT' : pizzaObj.price}</span>
 			</div>
 		</li>
 	);
@@ -114,7 +118,7 @@ function Footer() {
 		return (
 			<footer className="footer order">
 				{new Date().toLocaleTimeString()}. Sorry! We're closed.
-				<div className="btn">Order Now!</div>
+				{/* <div className="btn">Order Now!</div> */}
 			</footer>
 		);
 	}
